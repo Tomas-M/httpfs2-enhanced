@@ -37,6 +37,14 @@ OPTIONS
 *-t 'timeout'*::
     Use different timeout for connections. Default '30's.
 
+*-C 'file'*::
+    Cache downloaded data in file 'file'. Will also create .idx file
+
+*-S 'size'*::
+    Maximum size of the cache. If reached, oldest cache is overwritten
+    by newest data.
+
+
 SSL OPTIONS
 ~~~~~~~~~~~
 Available when SSL support is compiled in.

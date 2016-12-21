@@ -186,7 +186,6 @@ ssize_t get_cached(struct_url *url, off_t start, size_t rsize) {
 
     ssize_t bytes = 0;
     struct_range *p, *p2;
-    int i = 0;
     char md5[2][33];
 
 #ifdef USE_THREAD

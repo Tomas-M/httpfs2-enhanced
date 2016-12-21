@@ -1,0 +1,25 @@
+httpfs2 (0.1.5-1) unstable; urgency=low
+
+  * New upstream release:
+    - 32bit clean (LP: #675920)
+    - case insensitive header comparison (LP: #1043544) (Closes: #651384)
+    - (Closes: #577718) (Closes: #641728)
+  * Add SSL enabled package.
+
+ -- Michal Suchanek <hramrach@gmail.com>  Fri, 31 Aug 2012 13:01:28 +0200
+
+httpfs2 (0.1.4-1) unstable; urgency=low
+
+  * New upstream release:
+    - Fixes -f option (Closes: #566362).
+    - Fixes error handling in exchange() loop (Closes: #567128).
+  * Bump standards version to 3.8.4.
+  * Change dependency wrapping to make diffing easier.
+
+ -- Michal Suchanek <hramrach@centrum.cz>  Fri, 12 Mar 2010 17:34:20 +0100
+
+httpfs2 (0.1.3-1) unstable; urgency=low
+
+  * Initial release (Closes: #380461).
+
+ -- Michal Suchanek <hramrach@centrum.cz>  Mon, 11 Jan 2010 15:40:13 +0100

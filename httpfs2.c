@@ -1169,7 +1169,7 @@ static void usage(void)
     fprintf(stderr, "\t -r \tnumber of times to retry connection on reset\n\t\t(default: %i)\n", RESET_RETRIES);
 #endif
     fprintf(stderr, "\t -t \tset socket timeout in seconds (default: %i)\n", TIMEOUT);
-    fprintf(stderr, "\t -C \tset cache filename. also creates .idx file neat to cache file\n");
+    fprintf(stderr, "\t -C \tset cache filename. also creates .idx file near to cache file\n");
     fprintf(stderr, "\t -S \tset max size of cache file (default: %lld)\n", CACHEMAXSIZE);
     fprintf(stderr, "\tmount-parameters should include the mount point\n");
 }

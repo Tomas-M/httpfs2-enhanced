@@ -1,1 +1,2 @@
-httpfs2	/usr/bin
+#!/usr/bin/dh-exec
+httpfs2-mt => /usr/bin/httpfs2

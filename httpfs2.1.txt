@@ -22,26 +22,50 @@ single URL can be mounted. The server must be able to send byte ranges.
 
 OPTIONS
 -------
+
 *-c 'console'*::
-    Attempt to use the file ior device 'console' for output after fork.
+    Attempt to use the file or device 'console' for output after fork.
     The default is '/dev/console'.
 
 *-f*::
     Do not fork, stay in foreground.
 
+*-r 'retries'*::
+    (if 'ECONNRESET' is defined) Retry connecting to server after receiving
+    'ECONNRESET'. Defaults to 8 times which gives about 30s timeout.
+
 *-t 'timeout'*::
     Use different timeout for connections. Default '30's.
 
-*'URL'*::
-    The url should specify the protocol as http or https, and it may specify
-    basic authentication username and password. Currently special characters
-    like whitespace are not handled so the URL cannot contain them.  See a
-    sample URL below:
+SSL OPTIONS
+~~~~~~~~~~~
+Available when SSL support is compiled in.
+
+*-2*::
+    Allow server certificates signed with RSA-MD2 (strongly discouraged)
+
+*-5*::
+    Allow server certificates signed with RSA-MD5 (discouraged)
+
+*-a 'CA file'*::
+    Specify a file to load trusted CA root certificates from.
+    A default location is set at build time.
+
+*-d 'n'*::
+    Set GnuTLS debug level to numeric value n.
+
+*'URL'*
+~~~~~~~
+The url should specify the protocol as http or https, and it may specify basic
+authentication username and password. Currently special characters like
+whitespace are not handled so the URL cannot contain them.  See a sample URL
+below:
 
       http://user:password@server.com/dir/file
 
-*'FUSE-OPTIONS'*::
-    These options are passed to the *FUSE* library. At the very least the mount point should be specified.
+*'FUSE-OPTIONS'*
+~~~~~~~~~~~~~~~~
+These options are passed to the *FUSE* library. At the very least the mount point should be specified.
 
 
 EXIT STATUS

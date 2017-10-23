@@ -1,5 +1,6 @@
 MAIN_CFLAGS :=  -g -Os -Wall $(shell pkg-config fuse --cflags)
 MAIN_CPPFLAGS := -Wall -Wno-unused-function -Wconversion -Wtype-limits -DUSE_AUTH -D_XOPEN_SOURCE=700 -D_ISOC99_SOURCE
+LDFLAGS := -static
 THR_CPPFLAGS := -DUSE_THREAD
 THR_LDFLAGS := -lpthread
 GNUTLS_VERSION := 2.10

@@ -1711,6 +1711,7 @@ static int open_client_socket(struct_url *url) {
         fprintf(stderr, "%s: %s: initializing SSL socket.\n", argv0, url->tname);
         r = gnutls_init(&url->ss, GNUTLS_CLIENT);
         if (!r) gnutls_session_set_ptr(url->ss, url); /* used in cert verifier */
+        if (!r) gnutls_server_name_set(url->ss, GNUTLS_NAME_DNS, url->host, strlen(url->host));
         if (!r) r = gnutls_priority_set_direct(url->ss, ps, &errp);
         if (!r) errp = NULL;
         /* alternative to gnutls_priority_set_direct: if (!r) gnutls_set_default_priority(url->ss); */

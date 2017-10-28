@@ -1,0 +1,8 @@
+MAIN_CFLAGS :=  -g -Os -Wall $(shell pkg-config fuse --cflags | sed -r 's:-I:-I$(STAGING_DIR):')
+MAIN_CPPFLAGS := -Wall -Wno-unused-function -Wconversion -Wtype-limits -DUSE_AUTH -D_XOPEN_SOURCE=700 -D_ISOC99_SOURCE
+THR_CPPFLAGS := -DUSE_THREAD
+THR_LDFLAGS := -lpthread -static
+MAIN_LDFLAGS := $(shell pkg-config fuse --libs | sed -e s/-lrt// -e s/-ldl// -e s/-pthread// -e "s/  / /g")
+
+all:
+	$(CC) $(MAIN_CPPFLAGS) $(THR_CPPFLAGS) $(CPPFLAGS) $(MAIN_CFLAGS) $(CFLAGS) httpfs2.c $(MAIN_LDFLAGS) $(LDFLAGS) $(THR_LDFLAGS) -o httpfs2

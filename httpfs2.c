@@ -1212,11 +1212,6 @@ static int convert_num64(unsigned long long * num, char ** argv)
 
 int main(int argc, char *argv[])
 {
-     // The following line ensures that the process is not killed by systemd
-     // on shutdown, it is necessary to keep process running if root filesystem
-     // is mounted using httpfs. Proper end of the process is umount, not kill.
-     argv[0][0] = '@';
-    
     char * fork_terminal = CONSOLE;
     char * cachename = NULL;
     int do_fork = 1;
@@ -1328,6 +1323,11 @@ int main(int argc, char *argv[])
     char *mountpoint;
     int err = -1;
     int fork_res = 0;
+
+    // The following line ensures that the process is not killed by systemd
+    // on shutdown, it is necessary to keep process running if root filesystem
+    // is mounted using httpfs. Proper end of the process is umount, not kill.
+    argv[0][0] = '@';
 
     if (fuse_parse_cmdline(&args, &mountpoint, NULL, NULL) != -1 &&
             (ch = fuse_mount(mountpoint, &args)) != NULL) {

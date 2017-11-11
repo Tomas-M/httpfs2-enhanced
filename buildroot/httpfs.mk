@@ -12,6 +12,7 @@ HTTPFS_DEPENDENCIES = host-pkgconf libfuse
 
 
 define HTTPFS_BUILD_CMDS
+    cat $(HTTPFS_DIR)/buildroot/Makefile.buildroot.static > $(HTTPFS_DIR)/Makefile
     $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D) all
 endef
 

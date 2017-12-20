@@ -26,7 +26,7 @@ manpages = $(addsuffix .1,$(binaries))
 
 intermediates += $(addsuffix .xml,$(manpages))
 
-targets = $(binaries) $(manpages)
+targets = $(binaries)
 
 full:
 	$(MAKE) all $(addprefix all,$(variants))

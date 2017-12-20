@@ -1796,8 +1796,8 @@ parse_header(struct_url *url, const char * buf, size_t bytes,
     ssize_t header_len = (end + 3) - ptr;
 
     end = memchr(ptr, '\n', bytes);
-    char * http = "HTTP/1.1 ";
-    if(!mempref(ptr, http, (size_t)(end - ptr), 1) || !isdigit( *(ptr + strlen(http))) ) {
+    char *http = "HTTP/1.1 ", *http10 = "HTTP/1.0 ";
+    if((!mempref(ptr, http, (size_t)(end - ptr), 1) && !mempref(ptr, http10, (size_t)(end - ptr), 1)) || !isdigit( *(ptr + strlen(http))) ) {
         http_report ("reply does not contain status!",
                 method, buf, (size_t)header_len);
         errno = EIO;
@@ -2099,12 +2099,20 @@ req:
             return res;
         } else {
             bytes = (size_t)res;
+req_header:
             res = parse_header(url, buf, bytes, method, content_length,
                     range ? 206 : 200);
             if (res == -EAGAIN) /* redirect */
                 goto req;
 
             if (res <= 0){
+                if (bytes < HEADER_SIZE) {
+                    res = read_client_socket(url, buf + bytes, HEADER_SIZE - bytes);
+                    if (res > 0) {
+                        bytes += res;
+                        goto req_header;
+                    }
+                }
                 http_report("exchange: server error", method, buf, bytes);
                 return res;
             }
